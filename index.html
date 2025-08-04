@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8" />
+  <title>Itorrent iframe with Sidebar and Clock</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet" />
+  <style>
+    html, body, iframe {
+      margin: 0; 
+      padding: 0; 
+      width: 100%; 
+      height: 100%; 
+      border: none;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #000;
+      color: white;
+      display: flex;
+      flex-direction: column; /* Vertikális elrendezés */
+      height: 100vh; /* Teljes magasság */
+      overflow: hidden; /* Overfolyás megakadályozása */
+    }
+
+    .sidebar {
+      position: fixed;
+      top: 0; 
+      left: 0;
+      height: 100%;
+      width: 60px;
+      background-color: rgba(17, 17, 17, 0); /* Teljesen áttetsző háttér */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 30px;
+      z-index: 1000;
+    }
+
+    .sidebar a {
+      text-decoration: none;
+      color: #00f7ff;
+      font-size: 24px;
+      margin: 18px 0;
+      transition: transform 0.3s, color 0.3s;
+    }
+
+    .sidebar a:hover {
+      color: #ff00ff;
+      transform: scale(1.2);
+      text-shadow: 0 0 10px #ff00ff;
+    }
+
+    .clock {
+      position: fixed;
+      top: 4px; 
+      right: 17px;
+      font-size: 16px;
+      color: cyan;
+      background-color: #000;
+      padding: 7px 16px;
+      border-radius: 6px;
+      z-index: 10000;
+      font-weight: bold;
+    }
+
+    .sidebar-image {
+      width: 40px; /* Méret beállítása */
+      height: auto; /* Arány megtartása */
+      position: absolute; /* Kép abszolút pozicionálása */
+      top: 5px; /* Távolság a tetejétől */
+      right: 10px; /* Távolság a jobbtól */
+      z-index: 1001; /* Biztosítsd, hogy más elemek felett legyen */
+    }
+
+    .vertical-text {
+      position: fixed;
+      left: 0; /* A bal élhez igazítás */
+      top: 0; /* A tetejéhez igazítás */
+      color: cyan;
+      font-size: 18px; /* Betűméret beállítása */
+      background-color: #000; /* Fekete háttér */
+      padding: 12px; /* Párnázás hozzáadása */
+      z-index: 1000; /* Biztosítsd, hogy más elemek felett legyen */
+      white-space: nowrap; /* Szöveg összetömörítése */
+      width: 100%; /* Teljes szélesség */
+      text-align: left; /* Szöveg balra igazítása */
+    }
+  </style>
+</head>
+<body>
+  <!-- NEON SIDEBAR -->
+  <div class="sidebar">
+    <a href="https://kovacsalexandru77.github.io/NNN/" target="_blank">
+      <img src="https://ia601805.us.archive.org/21/items/netflix1_202506/netflix1.png" alt="NetFlix" width="24" height="24" style="vertical-align: middle;">
+    </a>
+    <a href="https://kovacsalexandru77.github.io/NNN/" target="_blank"><i class="bi bi-house"></i></a>
+    <a href="https://kovacsalexandru77.github.io/moviess/" target="_blank"><i class="bi bi-film"></i></a>
+    <a href="https://kovacsalexandru77.github.io/seriess/" target="_blank"><i class="bi bi-collection-play"></i></a>
+  </div>
+
+  <!-- VERTICAL TEXT -->
+  <div class="vertical-text">Nᴇᴛꜰʟɪx Sᴀɴᴅᴜ▶</div>
+
+  <!-- CLOCK -->
+  <div class="clock" id="clock"></div>
+
+  <!-- Iframe page -->
+  <iframe src="https://net2025.cc/tv/home/" allowfullscreen></iframe>
+
+  <script>
+    function updateClock() {
+      const now = new Date();
+      const hours = now.getHours().toString().padStart(2, '0');
+      const minutes = now.getMinutes().toString().padStart(2, '0');
+      document.getElementById('clock').textContent = `${hours}:${minutes}`;
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+  </script>
+</body>
+</html>
